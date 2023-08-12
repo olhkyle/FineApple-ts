@@ -1,0 +1,39 @@
+{
+	"compilerOptions": {
+		/* Modules */
+		"baseUrl": ".",
+		"paths": {},
+		"module": "esnext",
+		"moduleResolution": "nodenext",
+		"resolveJsonModule": true,
+
+		/* Type Checking */
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"strict": true,
+
+		/* Language and Environment */
+		"target": "es6",
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"jsx": "react-jsx",
+
+		/* Interop Constraints */
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+
+		/* Emit */
+		"downlevelIteration": true,
+		"inlineSources": true,
+		"preserveConstEnums": true,
+		"removeComments": false,
+		"sourceMap": true,
+
+		/* Completeness*/
+		"allowJs": true,
+		"skipLibCheck": true
+	},
+	"include": ["src"]
+}
