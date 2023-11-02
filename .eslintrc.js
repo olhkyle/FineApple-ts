@@ -9,10 +9,10 @@ module.exports = {
 
 	extends: [
 		'eslint:recommended',
+		'prettier',
 		'plugin:@typescript-eslint/recommended',
 		'plugin:react/recommended',
 		'plugin:react-hooks/recommended',
-		'prettier',
 	],
 
 	parser: '@typescript-eslint/parser',
@@ -23,7 +23,7 @@ module.exports = {
 		sourceType: 'module',
 	},
 
-	plugins: ['@typescript-eslint', 'import', 'prettier', 'react', 'react-hooks'],
+	plugins: ['@typescript-eslint', 'import', 'prettier', 'react', 'react-hooks', '@emotion'],
 	settings: { 'import/resolver': { typescript: {} }, react: { version: 'detect' } },
 
 	rules: {

@@ -21,7 +21,7 @@ const unfollowBtnStyle = {
 	...commonBtnStyle,
 	backgroundColor: 'white',
 	color: 'black',
-	border: '1px solid #cfd9de',
+	border: '1px solid #efefef',
 };
 
 const App = () => {

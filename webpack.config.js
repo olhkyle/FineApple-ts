@@ -2,38 +2,48 @@ const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
-	mode: 'development',
-	entry: './src/index.tsx',
+	mode: isProd ? 'production' : 'development',
+	devtool: isProd ? 'hidden-source-map' : 'source-map',
+	entry: './src/main.tsx',
 	resolve: {
+		modules: ['node_modules'],
 		extensions: ['.js', '.jsx', '.ts', '.tsx'],
 	},
 	module: {
 		rules: [
 			{
-				test: /\.tsx$/,
-				use: ['babel-loader', 'ts-loader'],
+				test: /\.(ts|tsx)$/,
+				loader: 'ts-loader',
+				options: {
+					transpileOnly: isProd ? false : true,
+				},
+			},
+			{
+				test: /\.css?$/,
+				use: ['style-loader', 'css-loader'],
 			},
 			{
 				test: /\.(png|jpe?g|gif)$/,
-				use: [
-					{
-						loader: 'file-loader',
-					},
-				],
+				loader: 'file-loader',
+				options: {
+					name: '[name].[ext]?[hash]',
+				},
 			},
 		],
 	},
 	plugins: [
 		new HTMLWebpackPlugin({
-			template: './public/index.html',
+			template: './index.html',
 		}),
 		new CleanWebpackPlugin(),
 	],
 	optimization: { minimizer: [] },
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'bundle.js',
+		filename: '[name].js',
 	},
 	devServer: {
 		// webpack-dev-server에게 dist 디렉터리의 파일을 localhost:3000에 제공하도록 합니다.

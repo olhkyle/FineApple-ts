@@ -1,23 +1,25 @@
 {
 	"compilerOptions": {
-		/* Modules */
-		"baseUrl": ".",
-		"paths": {},
-		"module": "esnext",
-		"moduleResolution": "nodenext",
-		"resolveJsonModule": true,
-
-		/* Type Checking */
-		"noFallthroughCasesInSwitch": true,
-		"noImplicitReturns": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"strict": true,
-
 		/* Language and Environment */
 		"target": "es6",
 		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+
+		/* Modules */
+		"baseUrl": "./src",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"allowImportingTsExtensions": true,
 		"jsx": "react-jsx",
+
+		/* Type Checking */
+		"strict": true,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
 
 		/* Interop Constraints */
 		"allowSyntheticDefaultImports": true,
@@ -35,5 +37,6 @@
 		"allowJs": true,
 		"skipLibCheck": true
 	},
-	"include": ["src"]
+	"include": ["src/**/*.tsx", "src/**/*.ts"],
+	"exclude": ["node_modules"]
 }

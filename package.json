@@ -1,15 +1,43 @@
 {
-	"name": "withoutCRA-ts",
+	"name": "fineapple-ts",
+	"private": true,
 	"version": "1.0.0",
-	"main": "index.tsx",
+	"main": "main.tsx",
 	"license": "MIT",
 	"scripts": {
-		"dev": "webpack-dev-server --config webpack.config.js --open --hot",
-		"build": "webpack --config webpack.config.js"
+		"dev": "NODE_ENV=development webpack-dev-server --config webpack.config.js --open --hot",
+		"build": "NODE_ENV=production webpack --config webpack.config.js"
 	},
 	"dependencies": {
+		"@mantine/carousel": "^7.1.7",
+		"@mantine/core": "^7.1.7",
+		"@mantine/dates": "^7.1.7",
+		"@mantine/hooks": "^7.1.7",
+		"@mantine/tiptap": "^7.1.7",
+		"@tabler/icons-react": "^2.40.0",
+		"@tanstack/react-query": "^5.4.3",
+		"@tanstack/react-query-devtools": "^5.4.3",
+		"@tiptap/extension-highlight": "^2.1.12",
+		"@tiptap/extension-link": "^2.1.12",
+		"@tiptap/extension-placeholder": "^2.1.12",
+		"@tiptap/extension-underline": "^2.1.12",
+		"@tiptap/react": "^2.1.12",
+		"@tiptap/starter-kit": "^2.1.12",
+		"bcrypt": "^5.1.1",
+		"dayjs": "^1.11.10",
+		"dotenv": "^16.3.1",
+		"embla-carousel-react": "^8.0.0-rc14",
+		"firebase": "^10.5.2",
+		"icons": "^1.0.0",
+		"lodash": "^4.17.21",
 		"react": "^18.2.0",
-		"react-dom": "^18.2.0"
+		"react-country-flag": "^3.1.0",
+		"react-dom": "^18.2.0",
+		"react-hook-form": "^7.47.0",
+		"react-icons": "^4.11.0",
+		"react-router-dom": "^6.18.0",
+		"recoil": "^0.7.7",
+		"zod": "^3.22.4"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.22.10",
