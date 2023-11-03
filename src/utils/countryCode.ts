@@ -1,7 +1,15 @@
-import countyList from '../constants/countyList';
+import { countryList } from '../constant/countyList';
 
-const convertCountryNameToCode = countryName =>
-  Object.values(countyList).find(info => info.CountryNameKR === countryName)['2digitCode'];
+const convertCountryNameToCode = (countryName: string) => {
+	if (!Array.isArray(Object.values(countryList))) {
+		return;
+	}
 
-// eslint-disable-next-line import/prefer-default-export
+	const foundCountry = Object.values(countryList).find(info => info.CountryNameKR === countryName);
+
+	if (!foundCountry) return;
+
+	return foundCountry['2digitCode'];
+};
+
 export { convertCountryNameToCode };
