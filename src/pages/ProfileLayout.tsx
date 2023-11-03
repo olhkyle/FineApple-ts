@@ -1,12 +1,7 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import { ProfileHeader } from '../components';
 
-const ProfileLayout = () => (
-  <>
-    <ProfileHeader />
-    <Outlet />
-  </>
-);
+const ProfileLayout = () => {
+	return <>ProfileLayout</>;
+};
 
 export default ProfileLayout;
