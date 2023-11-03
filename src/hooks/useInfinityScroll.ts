@@ -1,20 +1,22 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
+import { useEffect, useRef } from 'react';
 
-const useInfinityScroll = callback => {
-  const ref = React.useRef(null);
+const useInfinityScroll = (callback: () => void) => {
+	const ref = useRef<HTMLDivElement | null>(null);
 
-  React.useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        callback();
-      }
-    });
+	useEffect(() => {
+		const observer = new IntersectionObserver(entries => {
+			if (entries[0].isIntersecting) {
+				callback();
+			}
+		});
 
-    observer.observe(ref.current);
-  }, []);
+		observer.observe(ref.current as Element);
+		return () => {
+			observer.disconnect();
+		};
+	}, []);
 
-  return ref;
+	return ref;
 };
 
 export default useInfinityScroll;
