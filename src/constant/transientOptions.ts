@@ -1,5 +1,5 @@
 const transientOptions = {
-  shouldForwardProp: propName => !propName.startsWith('$'),
+	shouldForwardProp: (propName: string) => !propName.startsWith('$'),
 };
 
 export default transientOptions;
