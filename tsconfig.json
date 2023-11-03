@@ -13,6 +13,7 @@
 		"noEmit": true,
 		"allowImportingTsExtensions": true,
 		"jsx": "react-jsx",
+		"jsxImportSource": "@emotion/react",
 
 		/* Type Checking */
 		"strict": true,
