@@ -113,6 +113,10 @@ const router = createBrowserRouter([
 	},
 ]);
 
+if (process.env.NODE_ENV === 'production') {
+	console.log('[RUN] App running in production mode');
+}
+
 const App = () => {
 	return (
 		<RecoilRoot>

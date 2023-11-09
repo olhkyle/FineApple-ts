@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Menu } from '@mantine/core';
 import userState from '../../../recoil/atoms/userState';
 import { AvatarIcon } from '..';
-// import { authSignOut } from '../../../services/auth';
+import { authSignOut } from '../../../service/auth';
 import ProfileSubMenu from './ProfileSubMenu';
 import routes, { RoutePath } from '../../../constant/routes';
 
@@ -14,13 +14,13 @@ type Content = '프로필' | '나의 질문' | '좋아요';
 export interface UserMenuItem {
 	size: Size;
 	content: Content;
-	path: RoutePath;
+	path: RoutePath<typeof routes>;
 }
 
 const menuItems: UserMenuItem[] = [
-	{ size: 'lg', content: '프로필', path: routes.MY_PROFILE_PATH },
-	{ size: 'lg', content: '나의 질문', path: routes.MY_POSTS_PATH },
-	{ size: 'lg', content: '좋아요', path: routes.MY_FAV_POSTS_PATH },
+	{ size: 'md', content: '프로필', path: routes.MY_PROFILE_PATH },
+	{ size: 'md', content: '나의 질문', path: routes.MY_POSTS_PATH },
+	{ size: 'md', content: '좋아요', path: routes.MY_FAV_POSTS_PATH },
 ];
 
 const UserMenu = () => {
@@ -29,7 +29,7 @@ const UserMenu = () => {
 
 	const handleLogout = async () => {
 		try {
-			// await authSignOut();
+			await authSignOut();
 			setUser(null);
 		} catch (e) {
 			console.error(e);
@@ -41,16 +41,14 @@ const UserMenu = () => {
 	return !user ? (
 		<LoginLink to={routes.SIGNIN_PATH}>로그인</LoginLink>
 	) : (
-		<MenuContainer>
-			<Menu trigger="hover">
-				<Menu.Target>
-					<AvatarWrapper>
-						<AvatarIcon avatarId={user.avatarId} activeHoverStyle={true} />
-					</AvatarWrapper>
-				</Menu.Target>
-				<ProfileSubMenu menuItems={menuItems} handleLogout={handleLogout} />
-			</Menu>
-		</MenuContainer>
+		<Menu trigger="click">
+			<Menu.Target>
+				<AvatarWrapper>
+					<AvatarIcon avatarId={user.avatarId} activeHoverStyle={true} />
+				</AvatarWrapper>
+			</Menu.Target>
+			<ProfileSubMenu menuItems={menuItems} handleLogout={handleLogout} />
+		</Menu>
 	);
 };
 
@@ -79,14 +77,6 @@ const LoginLink = styled(Link)`
 
 	@media screen and (min-width: 768px) {
 		display: flex;
-	}
-`;
-
-const MenuContainer = styled.div`
-	display: none;
-
-	@media screen and (min-width: 768px) {
-		display: block;
 	}
 `;
 

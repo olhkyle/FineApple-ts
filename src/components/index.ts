@@ -5,3 +5,4 @@ export * from './profile';
 
 export { default as Layout } from '../components/Layout';
 export { default as ErrorBoundary } from '../components/ErrorBoundary';
+export { default as Main } from '../components/Main';

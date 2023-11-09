@@ -1,25 +1,12 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
-import { Button, Center } from '@mantine/core';
+import { Center, UnstyledButton } from '@mantine/core';
 import { Keyframes, keyframes } from '@emotion/react';
 import { useToast } from '../../hooks';
-
-type ToastType = 'success' | 'warning' | 'error';
-type Position = 'top' | 'bottom';
+import { Position, Toast } from 'recoil/atoms/toastState';
 
 type AnimationStatus = 'entry' | 'dismiss';
 type Animation = Record<Position, Record<AnimationStatus, Keyframes>>;
-
-interface ToastProps {
-	id: string;
-	h: string;
-	type: ToastType;
-	position: Position;
-	closeOnClick: boolean;
-	autoClose: boolean;
-	autoCloseDelay: number;
-	message: string;
-}
 
 const entryTop = keyframes`
   from {
@@ -107,7 +94,7 @@ const Toast = ({
 	autoClose = true,
 	autoCloseDelay = 3000,
 	message,
-}: ToastProps) => {
+}: Toast) => {
 	const [status, setStatus] = useState<AnimationStatus>('entry');
 	const { remove } = useToast();
 
@@ -119,16 +106,16 @@ const Toast = ({
 	return (
 		<Container status={status} position={position} h={h} bgc={bgc[type]} onAnimationEnd={handleAnimationEnd}>
 			{closeOnClick && (
-				<Button pos="absolute" sx={{ alignSelf: 'self-start' }} onClick={() => setStatus('dismiss')}>
-					X
-				</Button>
+				<UnstyledButton pos="absolute" sx={{ alignSelf: 'self-start' }} onClick={() => setStatus('dismiss')} right="1.5%">
+					x
+				</UnstyledButton>
 			)}
 			<Center px="5%">{message}</Center>
 		</Container>
 	);
 };
 
-const Container = styled.div<{ status: 'entry' | 'dismiss'; position: Position; h: string; bgc: (typeof bgc)[keyof typeof bgc] }>`
+const Container = styled.div<{ status: AnimationStatus; position: Position; h: string; bgc: (typeof bgc)[keyof typeof bgc] }>`
 	position: fixed;
 	top: ${({ position }) => position === 'top' && '0'};
 	bottom: ${({ position }) => position === 'bottom' && '0'};

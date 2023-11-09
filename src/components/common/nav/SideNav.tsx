@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
 import { Button, Flex } from '@mantine/core';
-import { NavLink, ThemeButton } from '.';
+import { NavLink, ThemeButton, UserMenu } from '.';
 import { useClickOutside } from '../../../hooks';
 import routes from '../../../constant/routes';
 
 interface SideNavProps {
-	onLogout: () => void;
 	close: () => void;
 }
 
-const SideNav = ({ onLogout, close }: SideNavProps) => {
+const SideNav = ({ close }: SideNavProps) => {
 	const [isProfileClicked, setIsProfileClicked] = useState<boolean>(false);
 
 	const ref = useClickOutside(() => setIsProfileClicked(false));
@@ -34,32 +33,8 @@ const SideNav = ({ onLogout, close }: SideNavProps) => {
 					랭킹
 				</Navigation>
 			</Flex>
-			<Flex m="2rem 0" p="0 1.5rem" sx={{ justifyContent: 'space-between' }}>
-				{/* {username ? (
-					<Name
-						ref={ref}
-						onClick={() => {
-							setIsProfileClicked(!isProfileClicked);
-						}}>
-						<Text typo="h6" color="var(--text-color)">
-							👨‍🚀 {username}
-						</Text>
-						{isProfileClicked && (
-							<LogoutButton
-								type="button"
-								onClick={() => {
-									onLogout();
-									close();
-								}}>
-								로그아웃
-							</LogoutButton>
-						)}
-					</Name>
-				) : (
-					<Login to={routes.LOGIN} onClick={close}>
-						로그인
-					</Login>
-				)} */}
+			<Flex m="1.5rem 0" p="0 1.5rem" sx={{ justifyContent: 'space-between' }}>
+				<UserMenu />
 				<ThemeButton />
 			</Flex>
 		</Container>
@@ -72,6 +47,7 @@ const Container = styled.div`
 	left: 0;
 	width: 100%;
 	background-color: var(--bg-color);
+	border-bottom: 1px solid var(--opacity-border-color);
 	z-index: 999;
 
 	@media screen and (min-width: 768px) {

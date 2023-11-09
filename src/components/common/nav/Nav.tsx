@@ -1,32 +1,17 @@
 import styled from '@emotion/styled';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { RiMenuFill } from 'react-icons/ri';
 import { Flex, UnstyledButton } from '@mantine/core';
 import { MenuList, ThemeButton, UserMenu, Logo, SideNav } from '..';
+import { useSideNavActive } from '../../../hooks';
 import routes from '../../../constant/routes';
-import { useToast, useSideNavActive } from '../../../hooks';
-import { RiMenuFill } from 'react-icons/ri';
 
 const Nav = () => {
 	const {
 		isActive,
 		actions: { toggle, close },
 	} = useSideNavActive();
-	const toast = useToast();
-	const navigate = useNavigate();
 
-	const handleLogout = async () => {
-		try {
-			// await logOut();
-			// setLogoutUser();
-			toast.success({ message: '성공적으로 로그아웃 되었습니다.' });
-		} catch (e) {
-			toast.error({ message: '문제가 발생하였습니다.' });
-			console.error(e);
-		} finally {
-			navigate(routes.MAIN_PATH);
-		}
-	};
-	console.log(isActive);
 	return (
 		<>
 			<NavWrapper>
@@ -66,7 +51,7 @@ const Nav = () => {
 				</NavContainer>
 			</NavWrapper>
 
-			{isActive && <SideNav onLogout={handleLogout} close={toggle} />}
+			{isActive && <SideNav close={toggle} />}
 			{isActive && <Overlay onClick={close} />}
 		</>
 	);
@@ -80,7 +65,7 @@ const NavWrapper = styled.div`
 	align-items: center;
 	width: 100%;
 	height: 80px;
-	background-color: var(--footer-bg-color);
+	background-color: var(--header-bg-color);
 	border-bottom: 1px solid var(--opacity-border-color);
 	color: var(--font-color);
 	z-index: 9900;
