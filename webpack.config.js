@@ -1,6 +1,11 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
+
+// this will update the process.env with environment variables in .env file
+dotenv.config();
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -39,6 +44,9 @@ module.exports = {
 			template: './index.html',
 		}),
 		new CleanWebpackPlugin(),
+		new webpack.DefinePlugin({
+			'process.env': JSON.stringify(process.env),
+		}),
 	],
 	optimization: { minimizer: [] },
 	output: {
