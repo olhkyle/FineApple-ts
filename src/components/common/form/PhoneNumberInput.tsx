@@ -1,13 +1,13 @@
 import { ForwardedRef, forwardRef } from 'react';
 import { Input } from '@mantine/core';
-import { ChangeHandler } from 'react-hook-form';
+import { ChangeHandler, UseFormSetValue } from 'react-hook-form';
+import { SignupSchema } from 'components/auth/schema';
 
 interface PhoneNumberInputProps {
 	name: string;
 	placeholder: string;
 	onChange: ChangeHandler;
-	onBlur: ChangeHandler;
-	setValue: (name: string, value: unknown, config?: Object) => void;
+	setValue: UseFormSetValue<SignupSchema>;
 }
 
 const formatPhoneNumber = (value: string) => {
@@ -17,17 +17,17 @@ const formatPhoneNumber = (value: string) => {
 };
 
 const PhoneNumberInput = forwardRef(
-	({ name, placeholder, onChange, onBlur, setValue }: PhoneNumberInputProps, ref: ForwardedRef<HTMLInputElement>) => {
+	({ name, placeholder, onChange, setValue, ...props }: PhoneNumberInputProps, ref: ForwardedRef<HTMLInputElement>) => {
 		return (
 			<Input
 				placeholder={placeholder}
 				name={name}
 				ref={ref}
 				onChange={e => {
-					setValue(name, formatPhoneNumber(e.target.value));
+					setValue('phoneNumber', formatPhoneNumber(e.target.value));
 					onChange(e);
 				}}
-				onBlur={onBlur}
+				{...props}
 			/>
 		);
 	},

@@ -13,13 +13,6 @@ const getKrNameCountryList = () => {
 	return krNameCountryList.sort();
 };
 
-/**
- * useForm의 register('inputName') props로 전달
- *
- * @param {{...register('inputName') }}
- * @returns
- */
-
 interface CountrySelect {
 	name: string;
 	onChange: ChangeHandler;
