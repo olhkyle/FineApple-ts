@@ -41,8 +41,7 @@ const GlobalStyle = css`
 		--color-blue-100: #0687f0;
 		--color-blue-200: #2272eb;
 		--color-blue-300: #0164e6;
-		--color-blue-400: #0164e6;
-		--color-blue-opacity: #56abff50;
+		--color-blue-opacity: #56abff75;
 
 		--color-purple: #6466f1;
 
@@ -84,7 +83,8 @@ const GlobalStyle = css`
 
 	body[data-theme='light'] {
 		--font-color: var(--color-black);
-		--hover-font-color: var(--color-blue-400);
+		--hover-font-color: var(--color-blue-200);
+		--hover-font-opacity-color: var(--color-blue-opacity);
 		--body-bg-color: var(--color-white);
 		--secondary-bg-color: var(--color-gray-10);
 		--third-bg-color: var(--color-gray-150);
@@ -93,6 +93,7 @@ const GlobalStyle = css`
 		--btn-hover-bg-color: var(--color-gray-800);
 		--opacity-bg-color: var(--opacity-gray-20);
 		--opacity-border-color: var(--color-gray-350);
+		--header-bg-color: var(--color-gray-100);
 		--footer-bg-color: var(--color-gray-10);
 		--footer-font-color: var(--color-gray-550);
 		--like-color: var(--color-orange-200);
@@ -101,6 +102,7 @@ const GlobalStyle = css`
 	body[data-theme='dark'] {
 		--font-color: var(--color-white);
 		--hover-font-color: var(--color-blue-50);
+		--hover-font-opacity-color: var(--color-blue-opacity);
 		--body-bg-color: var(--color-gray-950);
 		--secondary-bg-color: var(--color-light-dark);
 		--third-bg-color: var(--color-gray-650);
@@ -109,6 +111,7 @@ const GlobalStyle = css`
 		--btn-hover-bg-color: var(--color-gray-200);
 		--opacity-bg-color: var(--opacity-gray-30);
 		--opacity-border-color: var(--color-gray-600);
+		--header-bg-color: var(--color-light-dark);
 		--footer-bg-color: var(--color-light-dark);
 		--footer-font-color: var(--footer-font);
 		--like-color: var(--color-orange-200);
