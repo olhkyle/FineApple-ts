@@ -1,4 +1,4 @@
-export type RoutePath = (typeof routes)[keyof typeof routes];
+export type RoutePath<T> = T[keyof T];
 
 const routes = {
 	MAIN_PATH: '/',
