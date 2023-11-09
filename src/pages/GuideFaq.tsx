@@ -56,7 +56,7 @@ const GuideFaq = () => {
 			direction="column"
 			justify="space-between"
 			align="center"
-			mt="1rem"
+			mt="4rem"
 			mb="5rem"
 			maw="1024px"
 			c="var(--font-color)"
