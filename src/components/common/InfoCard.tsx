@@ -15,7 +15,7 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 interface InfoCardProps {
 	icon: ReactNode;
 	title: string;
-	desc: string;
+	desc?: string;
 	onClick: () => void;
 }
 
@@ -23,7 +23,7 @@ const InfoCard = ({ icon, title, desc, onClick }: InfoCardProps) => (
 	<Center ta="center">
 		<Stack align="center" sx={{ wordBreak: 'keep-all' }}>
 			<Icon>{icon}</Icon>
-			<Text fz="24px" fw="600">
+			<Text fz="24px" fw={600}>
 				{title}
 			</Text>
 			<Text w="60%">{desc}</Text>

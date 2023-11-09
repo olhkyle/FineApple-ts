@@ -12,20 +12,23 @@ interface AvatarIconProps {
 	activeHoverStyle?: boolean;
 }
 
-const AvatarIcon = ({ avatarId, size = 'md', activeHoverStyle = false }: AvatarIconProps) => (
-	<Avatar
-		src={avatarId ? avatars[avatarId] : null}
-		size={size}
-		alt="avatar image"
-		sx={{
-			backgroundColor: 'var(--opacity-border-color)',
-			border: '3px solid var(--opacity-border-color)',
-			borderRadius: '100%',
-			'&:hover': {
-				border: `${activeHoverStyle && '3px solid var(--hover-font-color)'}`,
-			},
-		}}
-	/>
-);
+const AvatarIcon = ({ avatarId, size = 'md', activeHoverStyle = false }: AvatarIconProps) => {
+	return (
+		<Avatar
+			src={avatarId ? avatars[avatarId] : null}
+			size={size}
+			alt="avatar image"
+			sx={{
+				backgroundColor: 'var(--opacity-border-color)',
+				border: '3px solid var(--opacity-border-color)',
+				borderRadius: '100%',
+				cursor: 'pointer',
+				'&:hover': {
+					border: `${activeHoverStyle && '3px solid var(--hover-font-color)'}`,
+				},
+			}}
+		/>
+	);
+};
 
 export default AvatarIcon;
