@@ -1,6 +1,6 @@
 import { Flex, Title } from '@mantine/core';
 import { Faq } from '../components';
-import { useMediaQuery } from '@mantine/hooks';
+import { useMediaQueries } from 'hooks';
 
 export interface FaqContent {
 	title: string;
@@ -49,7 +49,7 @@ const faqList: FaqContent[] = [
 ];
 
 const GuideFaq = () => {
-	const mobile = useMediaQuery('(max-width: 480px)');
+	const isMobile = useMediaQueries('max-width: 480px');
 
 	return (
 		<Flex
@@ -62,7 +62,7 @@ const GuideFaq = () => {
 			c="var(--font-color)"
 			fz="0.75rem"
 			ta="center">
-			<Title size={mobile ? '26px' : '52px'} mt="40px" mb="40px">
+			<Title size={isMobile ? '26px' : '52px'} mt="40px" mb="40px">
 				자주 묻는 질문 - FAQ
 			</Title>
 			<Faq faqList={faqList} />

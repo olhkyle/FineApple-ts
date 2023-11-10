@@ -6,3 +6,5 @@ export { default as useSideNavActive } from './useSideNavActive';
 export { default as useTextEditor } from './useTextEditor';
 export { default as useTheme } from './useTheme';
 export { default as useToast } from './useToast';
+export { default as useScrollTopEffect } from './useScrollTopEffect';
+export { default as useMediaQueries } from './useMediaQueries';

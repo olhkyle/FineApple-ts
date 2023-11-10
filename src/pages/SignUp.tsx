@@ -1,9 +1,9 @@
 import { Container, Title } from '@mantine/core';
 import { SignUpForm } from '../components/auth';
-import { useMediaQuery } from '@mantine/hooks';
+import { useMediaQueries } from 'hooks';
 
 const SignUp = () => {
-	const isMobile = useMediaQuery('(max-width:480px)');
+	const [isMobile] = useMediaQueries('max-width:480px');
 
 	return (
 		<Container c="var(--font-color)" py="48px" size="xs">

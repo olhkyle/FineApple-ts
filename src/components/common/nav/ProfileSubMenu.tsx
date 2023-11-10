@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button, Flex, Group, Menu, Text } from '@mantine/core';
 import userState from '../../../recoil/atoms/userState';
 import { Size, UserMenuItem } from './UserMenu';
-import { useMediaQuery } from '@mantine/hooks';
+import { useMediaQueries } from '../../../hooks';
 
 interface ProfileSubMenuProps {
 	menuItems: UserMenuItem[];
@@ -13,7 +13,7 @@ interface ProfileSubMenuProps {
 
 const ProfileSubMenu = ({ menuItems, handleLogout }: ProfileSubMenuProps) => {
 	const userData = Recoil.useRecoilValue(userState);
-	const mobile = useMediaQuery('(max-width: 480px)');
+	const [isMobile] = useMediaQueries('max-width: 480px');
 
 	return (
 		<Menu.Dropdown
@@ -35,11 +35,11 @@ const ProfileSubMenu = ({ menuItems, handleLogout }: ProfileSubMenuProps) => {
 					<Text
 						variant="gradient"
 						gradient={{ from: 'indigo', to: 'cyan', deg: 30 }}
-						fz={mobile ? '21px' : '27px'}
+						fz={isMobile ? '21px' : '27px'}
 						fw="600">{`${userData?.nickName}`}</Text>
 					<Group>
-						<Text fz={mobile ? '14px' : '16px'}>레벨 {userData?.level}</Text>
-						<Text fz={mobile ? '14px' : '16px'}>포인트 {userData?.point}</Text>
+						<Text fz={isMobile ? '14px' : '16px'}>레벨 {userData?.level}</Text>
+						<Text fz={isMobile ? '14px' : '16px'}>포인트 {userData?.point}</Text>
 					</Group>
 				</Flex>
 				<Flex direction="column" justify="start">

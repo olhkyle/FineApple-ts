@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 import { Accordion as MantineAccordion, Text, Container } from '@mantine/core';
 import { FaqContent } from '../../pages/GuideFaq';
-import { useMediaQuery } from '@mantine/hooks';
+import { useMediaQueries } from '../../hooks';
 
 interface FaqProps {
 	faqList: FaqContent[];
 }
 const Faq = ({ faqList }: FaqProps) => {
-	const mobile = useMediaQuery('(max-width: 480px)');
+	const isMobile = useMediaQueries('max-width: 480px');
 
 	return (
 		<Container w="100%">
@@ -15,12 +15,12 @@ const Faq = ({ faqList }: FaqProps) => {
 				{faqList.map(({ title, content }, idx) => (
 					<MantineAccordion.Item key={idx} value={`faq-${title}`}>
 						<MantineAccordion.Control>
-							<Text c="var(--font-color)" fz={mobile ? '1rem' : '1.2rem'} fw={500}>
+							<Text c="var(--font-color)" fz={isMobile ? '1rem' : '1.2rem'} fw={500}>
 								<span dangerouslySetInnerHTML={{ __html: title }} />
 							</Text>
 						</MantineAccordion.Control>
 						<MantineAccordion.Panel>
-							<Text mt="10px" p="10px" c="var(--font-color)" fz={mobile ? '0.8rem' : '1rem'} ta="start">
+							<Text mt="10px" p="10px" c="var(--font-color)" fz={isMobile ? '0.8rem' : '1rem'} ta="start">
 								{content.map(item => (
 									<Text key={item} py="0.4rem">
 										<span dangerouslySetInnerHTML={{ __html: item }} />

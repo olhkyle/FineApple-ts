@@ -1,6 +1,7 @@
 import { Divider, List, Text } from '@mantine/core';
 import { PopupModal } from '../../common';
 import { HighlightText } from '../..';
+import { useMediaQueries } from 'hooks';
 
 interface QuestionInfoModalProps {
 	opened: boolean;
@@ -15,32 +16,36 @@ const followingInstructions: string[] = [
 	`5. [글쓰기] 버튼을 클릭합니다. 질문이 선택한 주제에 해당하는 커뮤니티에 올라가면 다른 회원이 이를 보고 답글을 작성할 수 있습니다.`,
 ];
 
-const QuestionInfoModal = ({ opened, onClose }: QuestionInfoModalProps) => (
-	<PopupModal opened={opened} onClose={onClose} title="🚀 답변을 찾고 질문하기">
-		<Text fz="lg" fw="600">
-			FineApple 커뮤니티에서 답변을 검색하거나 새 질문을 올릴 수 있습니다.
-		</Text>
-		<Text my="20px">
-			<HighlightText>질문 검색</HighlightText>
-			{` 입력란을 활용하여 답변을 빠르게 찾거나 새로운 질문을 올릴 수 있습니다. 로그인한 상태라면 페이지의 좌측 상단에서 3번째에 있는`}
-			<HighlightText>질문하기</HighlightText>
-			{`를 클릭하여 질문을 작성할 수 있습니다.`}
-		</Text>
-		<Divider mt="30px" color="var(--opacity-border-color)" />
-		<Text mt="30px" fw="500" fz="lg">
-			{`✅ FineApple에서 질문을 하려면 아래의 프로세스를 따릅니다.`}
-		</Text>
-		<List p="32px" spacing="lg" c="var(--font-color)">
-			{followingInstructions.map((instruction, idx) => (
-				<List.Item key={idx}>{instruction}</List.Item>
-			))}
-		</List>
-		<Divider color="var(--opacity-border-color)" />
-		<Text mt="20px">
-			{`질문 해결에 도움이 된 답변에`} <HighlightText>채택된 답변 </HighlightText>
-			{` 표시를 하여 도움을 준 커뮤니티 회원의 노고를 인정해 줍니다. 그러면 해당 회원은 포인트를 지급받아 커뮤니티에서 레벨이 올라갑니다.`}
-		</Text>
-	</PopupModal>
-);
+const QuestionInfoModal = ({ opened, onClose }: QuestionInfoModalProps) => {
+	const [isMobile] = useMediaQueries('max-width: 480px');
+
+	return (
+		<PopupModal opened={opened} onClose={onClose} title="🚀 답변을 찾고 질문하기">
+			<Text fz="lg" fw="600">
+				FineApple 커뮤니티에서 답변을 검색하거나 새 질문을 올릴 수 있습니다.
+			</Text>
+			<Text my="20px">
+				<HighlightText>질문 검색</HighlightText>
+				{` 입력란을 활용하여 답변을 빠르게 찾거나 새로운 질문을 올릴 수 있습니다. 로그인한 상태라면 페이지의 좌측 상단에서 3번째에 있는`}
+				<HighlightText>질문하기</HighlightText>
+				{`를 클릭하여 질문을 작성할 수 있습니다.`}
+			</Text>
+			<Divider mt="30px" color="var(--opacity-border-color)" />
+			<Text mt="30px" fw="500" fz="lg">
+				{`✅ FineApple에서 질문을 하려면 아래의 프로세스를 따릅니다.`}
+			</Text>
+			<List p={isMobile ? '16px' : '32px'} spacing="lg" c="var(--font-color)">
+				{followingInstructions.map((instruction, idx) => (
+					<List.Item key={idx}>{instruction}</List.Item>
+				))}
+			</List>
+			<Divider color="var(--opacity-border-color)" />
+			<Text mt="20px">
+				{`질문 해결에 도움이 된 답변에`} <HighlightText>채택된 답변 </HighlightText>
+				{` 표시를 하여 도움을 준 커뮤니티 회원의 노고를 인정해 줍니다. 그러면 해당 회원은 포인트를 지급받아 커뮤니티에서 레벨이 올라갑니다.`}
+			</Text>
+		</PopupModal>
+	);
+};
 
 export default QuestionInfoModal;

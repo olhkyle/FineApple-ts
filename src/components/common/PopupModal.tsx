@@ -1,6 +1,7 @@
+import { ReactNode } from 'react';
 import styled from '@emotion/styled';
 import { Modal } from '@mantine/core';
-import { ReactNode } from 'react';
+import { useMediaQueries } from '../../hooks';
 
 /**
  * 1. `const [opened, { open, close }] = useDisclosure(false);`
@@ -23,30 +24,39 @@ interface PopupModalProps {
 	children: ReactNode;
 }
 
-const PopupModal = ({ title, opened, onClose, children }: PopupModalProps) => (
-	<ModalContainer
-		title={title}
-		opened={opened}
-		onClose={onClose}
-		padding="60px 60px 40px 60px"
-		radius="18px"
-		size="50%"
-		overlayProps={{
-			opacity: 0.25,
-			blur: 2.5,
-		}}
-		centered>
-		{children}
-	</ModalContainer>
-);
+const PopupModal = ({ title, opened, onClose, children }: PopupModalProps) => {
+	const [isMobile] = useMediaQueries('max-width: 480px');
+
+	return (
+		<ModalContainer
+			title={title}
+			opened={opened}
+			onClose={onClose}
+			padding={isMobile ? '30px 30px 20px 30px' : '60px 60px 40px 60px'}
+			radius="18px"
+			size={isMobile ? 'sm' : '50%'}
+			overlayProps={{
+				opacity: 0.25,
+				blur: 2.5,
+			}}
+			zIndex={999}
+			centered>
+			{children}
+		</ModalContainer>
+	);
+};
 
 const ModalContainer = styled(Modal)`
 	position: relative;
 	word-break: keep-all;
 
 	section {
-		height: 820px;
+		min-height: 80vh;
 		background-color: var(--footer-bg-color);
+	}
+
+	.mantine-Modal-inner {
+		padding: 0;
 	}
 
 	.mantine-Modal-header,
@@ -70,18 +80,25 @@ const ModalContainer = styled(Modal)`
 	}
 
 	h2.mantine-Modal-title {
-		width: 650px;
 		font-size: 40px;
 		font-weight: 600;
 		line-height: 1.2;
 		word-break: keep-all;
 		overflow-wrap: break-word;
+
+		@media screen and (max-width: 480px) {
+			font-size: 30px;
+		}
 	}
 
 	svg {
 		width: 20px;
 		height: 20px;
 		color: #6e6e73;
+	}
+
+	@media screen and (max-width: 480px) {
+		width: 100vw;
 	}
 `;
 
