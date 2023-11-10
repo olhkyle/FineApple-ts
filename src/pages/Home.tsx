@@ -5,14 +5,15 @@ import { Flex, List, Text, Title } from '@mantine/core';
 import { AutoComplete, CategorySelect, Tutorials } from '../components';
 import { CATEGORY_INFO, CategoryKeys } from '../constant/category';
 import { getSearchedPosts } from '../service/posts';
-import { useMediaQuery } from '@mantine/hooks';
+import { useMediaQueries } from 'hooks';
 
 const Home = () => {
 	const [currentValue, setCurrentValue] = useState<CategoryKeys>('');
-	const isValueMainCategory = currentValue === 'computer-it' || currentValue === 'game';
+	const isValueMainCategory = currentValue === 'computer-it' || currentValue === 'game' || currentValue === '';
 
-	const isDesktop = useMediaQuery('(max-width:1024px)');
-	const isMobile = useMediaQuery('(max-width:480px)');
+	const [isSmallMobile, isMobile, isDesktop] = useMediaQueries(['max-width:360px', 'max-width:480px', 'max-width:1024px']);
+
+	// TODO: currentValue(Category, SubCategory)에 따른 useQuery refetch 트리거가 되지 않는다.
 
 	return (
 		<Flex
@@ -28,10 +29,13 @@ const Home = () => {
 			<Description>
 				<Title mt="2rem" mb="2rem" ta="center">
 					<Flex direction={isDesktop ? 'column' : 'row'} gap={isDesktop ? '0' : '1rem'} justify="center" align="center">
-						<Text mt="1rem" fz={isMobile ? '4rem' : '6rem'}>
+						<Text mt="1rem" fz={isSmallMobile ? '3rem' : isMobile ? '4rem' : '6rem'}>
 							Welcome.
 						</Text>
-						<Text variant="gradient" gradient={{ from: '#5b3bff', to: '#00b7d7', deg: 75 }} fz={isMobile ? '4rem' : '6rem'}>
+						<Text
+							variant="gradient"
+							gradient={{ from: '#5b3bff', to: '#00b7d7', deg: 75 }}
+							fz={isSmallMobile ? '3rem' : isMobile ? '4rem' : '6rem'}>
 							FineApple
 						</Text>
 					</Flex>
@@ -45,14 +49,14 @@ const Home = () => {
 				fw={500}
 				bg="var(--color-blue-50)"
 				c="var(--color-white)"
-				sx={{ borderRadius: '999px' }}>
+				sx={{ borderRadius: '9999px' }}>
 				FineApple이 지원하는 Community를 즐겨보세요
 			</Text>
 
-			<Flex justify="center" align="center" gap="10px" mt="1.5rem">
-				<CategorySelect currentValue={currentValue} onValueChange={(value: CategoryKeys) => setCurrentValue(value)} />
+			<Flex justify="center" align="center" direction={isMobile ? 'column' : 'row'} gap="10px" mt="4rem">
+				<CategorySelect currentValue={currentValue} onValueChange={setCurrentValue} />
 				<AutoComplete
-					width={680}
+					width={600}
 					queryFn={getSearchedPosts}
 					category={isValueMainCategory ? currentValue : ''}
 					subCategory={isValueMainCategory ? '' : currentValue}
@@ -62,7 +66,7 @@ const Home = () => {
 			<Flex
 				direction="column"
 				justify="space-between"
-				mt={isMobile ? '4rem' : '8rem'}
+				mt={isMobile ? '4rem' : '6rem'}
 				p="2rem"
 				sx={{
 					border: ' 1px solid var(--opacity-border-color)',

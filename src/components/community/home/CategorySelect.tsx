@@ -26,23 +26,26 @@ const data: CategorySelectData[] = [
 	{ value: '', label: '전체', group: undefined },
 ];
 
-const CategorySelect = ({ currentValue, onValueChange }: CategorySelectProps) => (
-	<Select
-		value={currentValue}
-		onChange={onValueChange}
-		placeholder="카테고리 선택"
-		icon={<RiHashtag />}
-		dropdownPosition="bottom"
-		data={data ?? []}
-		radius="10px"
-		zIndex={10}
-		clearable
-		transitionProps={{ transition: 'pop-top-left', duration: 80, timingFunction: 'ease' }}
-	/>
-);
+const CategorySelect = ({ currentValue, onValueChange }: CategorySelectProps) => {
+	return (
+		<Select
+			value={currentValue}
+			onChange={onValueChange}
+			placeholder="카테고리 선택"
+			icon={<RiHashtag />}
+			dropdownPosition="bottom"
+			data={data ?? []}
+			radius="10px"
+			zIndex={10}
+			clearable
+			transitionProps={{ transition: 'pop-top-left', duration: 80, timingFunction: 'ease' }}
+		/>
+	);
+};
 
 const Select = styled(MantineSelect)`
 	font-family: 'Noto Sans';
+
 	& .mantine-Select-icon {
 		width: 50px;
 		font-size: 21px;
@@ -57,7 +60,8 @@ const Select = styled(MantineSelect)`
 		border: 1px solid var(--opacity-border-color);
 
 		:focus {
-			border: 1px solid var(--hover-font-color);
+			outline: 1px solid var(--hover-font-color);
+			outline-offset: 2px;
 		}
 	}
 
@@ -88,6 +92,14 @@ const Select = styled(MantineSelect)`
 		div {
 			gap: 10px;
 		}
+	}
+
+	@media screen and (min-width: 360px) {
+		width: 340px;
+	}
+
+	@media screen and (min-width: 480px) {
+		width: 270px;
 	}
 `;
 
