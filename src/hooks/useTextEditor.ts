@@ -4,11 +4,11 @@ import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
 import Placeholder from '@tiptap/extension-placeholder';
 
-const useTextEditor = ({ initContent = '', placeholder = '', option }) =>
-  useEditor({
-    extensions: [StarterKit, Underline, Highlight, Placeholder.configure({ placeholder })],
-    content: initContent,
-    ...option,
-  });
+const useTextEditor = ({ initContent = '', placeholder = '', option }: { initContent: string; placeholder: string; option: any }) =>
+	useEditor({
+		extensions: [StarterKit, Underline, Highlight, Placeholder.configure({ placeholder })],
+		content: initContent,
+		...option,
+	});
 
 export default useTextEditor;

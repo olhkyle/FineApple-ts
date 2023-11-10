@@ -21,7 +21,6 @@ const useSideNavActive = () => {
 	const close = () => {
 		localStorage.setItem(KEY, JSON.stringify(false));
 		setActive(false);
-		console.log(isActive);
 	};
 
 	return { isActive, actions: { toggle, close } } as const;
